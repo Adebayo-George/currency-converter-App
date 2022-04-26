@@ -1,0 +1,67 @@
+<Label>
+    font_size: 25
+<TextInput>
+    font_size: 32
+    size_hint: (1, None)
+    height: 50
+<MyLayout>
+
+    BoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        padding: 50
+        spacing: 20
+
+        Label:
+            text: 'Currency Converter'
+            background_color: (0, 0, 1, 1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            # Text properties
+            color: (0, 1, 0, 1)
+            bold: True
+            outline_color: (0, 0, 0)
+            outline_width: 2
+
+        Label:
+            id: convert_label
+            text: 'Amount'
+        TextInput:
+            id: currency_input
+            multiline: False
+
+        Label:
+            id: from_currency
+            text: 'From Currency'
+        TextInput:
+            multiline: False
+            on_text: root.from_currency_str = self.text
+
+        Label:
+            id:to_currency
+            text: 'To Currency'
+        TextInput:
+            multiline: False
+            on_text: root.to_currency_str = self.text
+
+        Button:
+            text: "Convert"
+            font_size: 25
+            on_press: root.convert()
+            #color: (0, 1, 0)
+
+<RoundedButton@Button>
+    background_color: (0, 0, 0, 0)
+    background_normal: ''
+    canvas.before:
+        Color:
+            rgba: (0, 1, 0)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [40]
